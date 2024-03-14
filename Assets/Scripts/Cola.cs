@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86;
 
 public class Cola : MonoBehaviour
 {
@@ -20,35 +21,16 @@ public class Cola : MonoBehaviour
         {
             cola1.Enqueue(cola1.Dequeue());
         }
+        Cola1();
 
-        while (cola1.Count > 0)
+        void Cola1()
         {
-            int aux = cola1.Dequeue();
             while (cola1.Count > 0)
             {
-                if (cola1.Peek() > aux)    //Peek() indica el numero que va a salir SIN SACARLO
-                {
-                    cola2.Enqueue(aux);
-                    aux = cola1.Dequeue();
-                }
-                else
-                {
-                    cola2.Enqueue(cola1.Dequeue());
-                }
-            }
-            cola.Enqueue(aux);  //num mas pequenio
-        }
-
-
-        
-        
-
-        while (cola2.Count > 0)
-            {
-                int aux = cola2.Dequeue();
+                int aux = cola1.Dequeue();
                 while (cola1.Count > 0)
                 {
-                    if (cola1.Peek() > aux)    //Peek() indica el numero que va a salir SIN SACARLO
+                    if (cola1.Peek() < aux)    //Peek() indica el numero que va a salir SIN SACARLO
                     {
                         cola2.Enqueue(aux);
                         aux = cola1.Dequeue();
@@ -58,11 +40,32 @@ public class Cola : MonoBehaviour
                         cola2.Enqueue(cola1.Dequeue());
                     }
                 }
+                cola.Enqueue(aux);  //num mas pequenio
+                Cola2();
+            }
+        }    
 
-                // swap de pilas
-                cola = cola2;
-            
-        }
+        void Cola2()
+        {
+            while (cola2.Count > 0)
+            {
+                int aux = cola2.Dequeue();
+                while (cola2.Count > 0)
+                {
+                    if (cola2.Peek() < aux)    //Peek() indica el numero que va a salir SIN SACARLO
+                    {
+                        cola1.Enqueue(aux);
+                        aux = cola2.Dequeue();
+                    }
+                    else
+                    {
+                        cola1.Enqueue(cola2.Dequeue());
+                    }
+                }
+                cola.Enqueue(aux);  //num mas pequenio
+                Cola1();
+            }
+        }      
 
         while (cola.Count > 0)
         {
@@ -70,6 +73,7 @@ public class Cola : MonoBehaviour
         }
     }
 }
+
 
 
 
