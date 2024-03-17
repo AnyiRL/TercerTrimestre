@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86;
@@ -71,7 +71,31 @@ public class Cola : MonoBehaviour
         {
             Debug.Log(cola.Dequeue());
         }
+
+        Dictionary<string, char> simbolo = new Dictionary<string, char>();
+
+        simbolo.add("Euro", €);
+        simbolo.add("Dollar", $);
+        simbolo.add("Yen", ¥);
+
+        Console.WriteLine("Ingrese moneda:");
+        string moneda = Console.ReadLine();
+
+
+        if (simbolo.ContainsKey("moneda"))
+        {
+            Console.WriteLine(simbolo["moneda"]);
+        }      
+        else
+        {
+            Console.Write("Error");
+        }
+
+        
+
     }
+
+
 }
 
 
