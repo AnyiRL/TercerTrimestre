@@ -8,39 +8,7 @@ public class Pila : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Stack<int> pila = new Stack<int>();
-        //pila.Push(4);
-        //pila.Push(-5);   
-        //pila.Push(-10);
-        //pila.Push(88);
-        //pila.Push(2);
-
-        //Stack<int> pila2 = new Stack<int>();
-        //while (pila.Count<0)
-        //{
-        //    int popNumber = pila.Pop();
-        //    if (popNumber > pila.Pop() && popNumber > pila2.Pop())
-        //    {
-
-        //        pila2.Push(popNumber);
-        //        pila.Push(pila.Pop());
-
-        //    }
-
-        //    else 
-        //    {
-        //        pila2.Push(pila.Pop());
-        //        pila.Push(popNumber);
-        //    }
-
-        //}
-        //while (pila2.Count < 0)
-        //{
-        //    int popNumber = pila2.Pop();
-        //    pila.Push(popNumber);
-
-        //}
-        //Debug.Log(pila);
+        
 
         Stack<int> originalStack = new Stack<int>();
         originalStack.Push(4);

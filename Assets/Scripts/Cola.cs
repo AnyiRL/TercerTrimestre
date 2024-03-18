@@ -20,63 +20,42 @@ public class Cola : MonoBehaviour
         while (cola.Count > 0)
         {
             cola1.Enqueue(cola.Dequeue());
-            Cola1();
         }
-        
 
-        void Cola1()
+        while (cola1.Count > 0)
         {
+            int aux = cola1.Dequeue();
             while (cola1.Count > 0)
             {
-                int aux = cola1.Dequeue();
-                while (cola1.Count > 0)
+                if (cola1.Peek() < aux)
                 {
-                    if (cola1.Peek() < aux)    //Peek() indica el numero que va a salir SIN SACARLO
-                    {
-                        cola2.Enqueue(aux);
-                        aux = cola1.Dequeue();
-                    }
-                    else
-                    {
-                        cola2.Enqueue(cola1.Dequeue());
-                    }
+                    cola2.Enqueue(aux);
+                    aux = cola1.Dequeue();
                 }
-                cola.Enqueue(aux);  //num mas pequenio
-                Cola2();
+                else
+                {
+                    cola2.Enqueue(cola1.Dequeue());
+                }
             }
-        }    
 
-        void Cola2()
-        {
-            while (cola2.Count > 0)
-            {
-                int aux = cola2.Dequeue();
-                while (cola2.Count > 0)
-                {
-                    if (cola2.Peek() < aux)    //Peek() indica el numero que va a salir SIN SACARLO
-                    {
-                        cola1.Enqueue(aux);
-                        aux = cola2.Dequeue();
-                    }
-                    else
-                    {
-                        cola1.Enqueue(cola2.Dequeue());
-                    }
-                }
-                cola.Enqueue(aux);  //num mas pequenio
-                Cola1();
-            }
-        }      
+            // el menor valor es aux
+            cola.Enqueue(aux);
+
+            // swap de pilas
+            Queue<int> auxcola = cola1;
+            cola1 = cola2;
+            cola2 = auxcola;
+        }
 
         while (cola.Count > 0)
         {
             Debug.Log(cola.Dequeue());
         }
-
-    }
-
-
+    }        
 }
+
+
+
 
 
 
