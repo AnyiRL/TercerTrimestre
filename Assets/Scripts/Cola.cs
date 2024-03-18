@@ -19,9 +19,10 @@ public class Cola : MonoBehaviour
 
         while (cola.Count > 0)
         {
-            cola1.Enqueue(cola1.Dequeue());
+            cola1.Enqueue(cola.Dequeue());
+            Cola1();
         }
-        Cola1();
+        
 
         void Cola1()
         {
@@ -71,27 +72,6 @@ public class Cola : MonoBehaviour
         {
             Debug.Log(cola.Dequeue());
         }
-
-        Dictionary<string, char> simbolo = new Dictionary<string, char>();
-
-        simbolo.add("Euro", €);
-        simbolo.add("Dollar", $);
-        simbolo.add("Yen", ¥);
-
-        Console.WriteLine("Ingrese moneda:");
-        string moneda = Console.ReadLine();
-
-
-        if (simbolo.ContainsKey("moneda"))
-        {
-            Console.WriteLine(simbolo["moneda"]);
-        }      
-        else
-        {
-            Console.Write("Error");
-        }
-
-        
 
     }
 
