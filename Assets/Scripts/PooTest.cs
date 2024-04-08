@@ -19,6 +19,12 @@ public class PooTest : MonoBehaviour
         vector3_2.Add(5, 10, -45);  //5,20,34
         vector3_2.Add(new RPMI.Vector3 ("a",1, 1, 1)); //6,21,-35
         vector3_2.Mul(10); //60,210,-350
+
+        Wizard mago1 = new Wizard("Carlos", 33, true);
+        Cowboy vaquero1 = new Cowboy("Anyi", 49);
+
+        print(vaquero1.name + "ataca con " + vaquero1.Attack() + "daño" + vaquero1.GetDamage());
+        print(mago1.name + "ataca con " + mago1.Attack() + "daño" + mago1.GetDamage());
     }
 
    
