@@ -11,9 +11,17 @@ public class Cowboy : character
        //construimos hijo
     }
 
-    public float Attack()
+    public override float Attack()
     {
-
+        Debug.Log("Cowboy ataca");
         return Random.Range(damage, damage * 2);
+    }
+
+    public override float Heal()
+    {
+        Debug.Log("El cowboy se cura");
+        health += 10;
+        base.Heal();    //invoca a la cura del metodo del padre
+        return 10;
     }
 }

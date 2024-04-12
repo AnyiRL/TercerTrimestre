@@ -20,11 +20,27 @@ public class PooTest : MonoBehaviour
         vector3_2.Add(new RPMI.Vector3 ("a",1, 1, 1)); //6,21,-35
         vector3_2.Mul(10); //60,210,-350
 
+        //character ch = new character("Hola", 2);      no se puede crear un personaje ya que esta en la clase abstracta
+        Wizard mago0 = new Wizard("Alonso", 22, true);      //en este si se puede porque no es abstracta
         Wizard mago1 = new Wizard("Carlos", 33, true);
         Cowboy vaquero1 = new Cowboy("Anyi", 49);
+        
+        List<character> characters = new List<character>();
+        characters.Add(vaquero1);
+        characters.Add(mago0);
+        characters.Add(mago1);
 
-        print(vaquero1.name + "ataca con " + vaquero1.Attack() + "daño" + vaquero1.GetDamage());
-        print(mago1.name + "ataca con " + mago1.Attack() + "daño" + mago1.GetDamage());
+        foreach (character character in characters)
+        {
+            print(character.name + "tiene " + character.GetDamage() + "puntos de daño");
+            
+
+        }
+
+
+        //print(vaquero1.name + "ataca con " + vaquero1.Attack() + "daño" + vaquero1.GetDamage());
+        //print(mago1.name + "ataca con " + mago1.Attack() + "daño" + mago1.GetDamage());
+
     }
 
    

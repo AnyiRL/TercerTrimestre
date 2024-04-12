@@ -23,7 +23,7 @@ public class Wizard :character
 
    
 
-    public float Attack()
+    public override float Attack()
     {
         //if (hasHat)
         //{
