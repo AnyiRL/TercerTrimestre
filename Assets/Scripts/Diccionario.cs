@@ -13,7 +13,7 @@ public class Diccionario : MonoBehaviour
 
         simbolo.Add("euro", '€');
         simbolo.Add("dollar", '$');
-        simbolo.Add("yen", '¥');
+        simbolo.Add("yen", '?');
 
         //Console.WriteLine("Ingrese moneda:");    //para consola
         //string moneda = Console.ReadLine();
