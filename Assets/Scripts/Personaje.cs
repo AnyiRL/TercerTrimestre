@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.U2D;
 
 public abstract class Personaje 
 {
@@ -14,13 +15,13 @@ public abstract class Personaje
     public LayerMask groundMask;   //capa de colisiones
     public AudioClip jumpClip, walkClip, idleClip, escaleraUpClip, escaleraDclip;
 
-    private float currentTime = 0;
+    
     private SpriteRenderer _rend;
     private Rigidbody2D rb;
     private Vector2 dir;
-    private bool _intentionToJump;
+    
     private Animator _animator;
-    private Vector3 originalPosition;
+   
     private bool habilityOn;
     private float originalSpeed;
 
@@ -29,33 +30,39 @@ public abstract class Personaje
     protected float damage;           //privado solo accesible dentro de la clase, clase hijos no o fuera de la clase
                                       //protected solo accesible detro de la clase, clase hijos pero no fuera 
     public float health;
+    protected Sprite _sprite;
+    protected float jumpforce;
+    public Color color;
 
-    public Personaje(string name, float damage)
+    public Personaje(string name, float damage, Sprite sprite)
     {
         this.name = name;
         this.damage = damage;
+        _sprite = sprite;
     }
 
-
-    public float GetDamage()         //getter
+    public Sprite GetSprite()
     {
-        return damage;
+        return _sprite;
     }
-
-    public abstract float Attack();
-    //{
-    //    Debug.Log("character Ataca");
-    //    return damage;
-    //}
-
-    public virtual float Heal()                        //permite a los hijos sobreescribir a los padres, si no hay se usa el del padre
+    public float GetJumpForce()
     {
-        Debug.Log("El character se cura");
-        health = Mathf.Clamp(health, 0, 100);          // clamp el valor entre 0,100 si se pasa escribe 100 y si es menor que 0 devuleve 0 
-        return health;
+        return jumpforce;
+    }
+    public void SetJumpForce(float jF)
+    {
+        if (jF > 0)
+        {
+            this.jumpforce = jF;
+        }
+
+    }
+    public abstract void Skill(Rigidbody2D rb);
+    public virtual void Update(Rigidbody2D rb)
+    {
+
     }
 
-    
 
     // Update is called once per frame
     void Update()
@@ -63,49 +70,14 @@ public abstract class Personaje
 
         dir = Vector2.zero;
 
-        MoveX();
-
-        if (Input.GetKey(leftKey))
-        {
-            _rend.flipX = true;
-            dir = new Vector2(-1, 0);
-        }
-        else if (Input.GetKey(rightKey))
-        {
-            _rend.flipX = false;
-            dir = new Vector2(1, 0);
-        }
-
-
-
-        _intentionToJump = false;
-        if (Input.GetKey(jumpKey))
-        {
-            _intentionToJump = true;
-        }
-        if (dir != Vector2.zero)                     //andando                           //#region #endregion para ordenar el codigo
-        {
-            _animator.SetBool("isWalking", true);
-            //AudioManager.instance.PlayAudio(walkClip, "walkSound");
-            //_animator.Play("walk");
-        }
-        else                                        //parados
-        {
-            _animator.SetBool("isWalking", false);
-            //_animator.Play("walk");
-        }
-        currentTime += Time.deltaTime;                            //Time.deltaTime - Tiempo en segundos que tarda en completarse el último frame //currentTime total
-        if (currentTime >= 2.5f)
-        {
-            _animator.SetBool("idle", true);
-            currentTime = 0;
-            //AudioManager.instance.PlayAudio(idleClip, "idleSound");
-
-        }
+        
 
         if (habilityOn)
         {
-            Escalera();
+            Volar();
+        }else
+        {
+            MoveX();
         }
 
 
@@ -124,7 +96,7 @@ public abstract class Personaje
         }else if (Input.GetKey(downKey))
         {
 
-            _animator.Play("bajar");
+            _animator.Play("agachar");
         }
     }
 
@@ -143,7 +115,7 @@ public abstract class Personaje
 
                              
     }
-    public void Escalera()
+    public void Volar()
 
     {
         dir = Vector2.zero;
@@ -151,14 +123,14 @@ public abstract class Personaje
         {
             _animator.Play("subir");
             dir = new Vector2(0, 1);
-            //AudioManager.instance.PlayAudio(escaleraUpClip, "upSound");
+            
 
         }
         else if (Input.GetKey(downKey))
         {
             _animator.Play("bajar");
             dir = new Vector2(0, -1);
-            //AudioManager.instance.PlayAudio(escaleraDclip, "DSound");
+            
         }
         else if (Input.GetKey(rightKey) || Input.GetKey(leftKey))
         {
@@ -182,13 +154,11 @@ public abstract class Personaje
         habilityOn = value;
         if (value)
         {
-            rb.gravityScale = 0;
-            speed = originalSpeed / 10;
+            Volar();
         }
         else
         {
-            rb.gravityScale = 1;
-            speed = originalSpeed;
+            MoveX();
         }
     }
 

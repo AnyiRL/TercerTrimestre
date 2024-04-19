@@ -6,9 +6,12 @@ public class Cowboy : character
 {
     
 
-    public Cowboy(string name, float damage) : base(name, damage)           //llamar a los componentes de character
+    public Cowboy(string name, float damage) : base(name, damage, Resources.Load<Sprite>("Sprite"))           //llamar a los componentes de character
     {
-       //construimos hijo
+        //construimos hijo
+
+        SetJumpForce(5);
+        color = Color.yellow;
     }
 
     public override float Attack()
@@ -23,5 +26,10 @@ public class Cowboy : character
         health += 10;
         base.Heal();    //invoca a la cura del metodo del padre
         return 10;
+    }
+
+    public override void Skill(Rigidbody2D rb)
+    {
+        throw new System.NotImplementedException();
     }
 }
