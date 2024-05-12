@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cowboy : character
+public class Cowboy : Character
 {
     
 
-    public Cowboy(string name, float damage) : base(name, damage, Resources.Load<Sprite>("Sprite"))           //llamar a los componentes de character
+    public Cowboy(string name) : base(name, Resources.Load<Sprite>("Sprite"), 15)           //llamar a los componentes de character
     {
         //construimos hijo
 
-        SetJumpForce(5);
-        color = Color.yellow;
+        //SetJumpForce(5);
+        //color = Color.yellow;
     }
 
     public override float Attack()
     {
         Debug.Log("Cowboy ataca");
-        return Random.Range(damage, damage * 2);
+
+        return damage * Random.Range(1, 1.5f*health); // h se refiere a vida 
     }
 
     public override float Heal()
@@ -28,8 +29,8 @@ public class Cowboy : character
         return 10;
     }
 
-    public override void Skill(Rigidbody2D rb)
-    {
-        throw new System.NotImplementedException();
-    }
+    //public override void Skill(Rigidbody2D rb)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }

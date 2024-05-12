@@ -25,7 +25,7 @@ public class mario : MonoBehaviour
     private bool onStair;
     private float originalSpeed;
     private int currentJumps = 0;    //index
-    private character character;
+    private Character character;
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +84,7 @@ public class mario : MonoBehaviour
             Escalera();
         }
 
-        character = new Cowboy("mago", 100);
+        character = new Cowboy("vaquero");
         _rend.sprite = character.GetSprite();
 
     }

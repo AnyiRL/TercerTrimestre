@@ -2,30 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wizard :character
+public class Wizard :Character
 {
   
-    private bool hasHat;
-    private float currentTime;
-    public float maxTime = 4;
-
-    public Wizard(string name,float damage, bool hasHat) : base ( name,damage, Resources.Load<Sprite>("Sprite"))  //construimos padre
-    {
     
-        this.hasHat = hasHat;
-        SetJumpForce(2.5f);
-        color = Color.yellow;
+    //private float currentTime;
+    private float damageMultiplier ;
+    //public float maxTime = 4;
+
+    public Wizard(string name,float damageMultiplier) : base ( name, Resources.Load<Sprite>("Sprite"),20)  //construimos padre
+    {
+        this.damageMultiplier = damageMultiplier;
+ 
+        //SetJumpForce(2.5f);
+        //color = Color.yellow;
     }
 
-    public bool HasHat()         //getter
-    {
-        return hasHat;
-    }
 
    
 
     public override float Attack()
     {
+        Debug.Log("Cowboy ataca");
+        return damage * damageMultiplier;
+        
         //if (hasHat)
         //{
         //    return damage * 2;
@@ -34,27 +34,37 @@ public class Wizard :character
         //    return damage;
         //}
         
-        return hasHat ? damage * 2 : damage;              //es lo mismo que lo de arriba pero abreviado    operacion ternaria     ? = pregunta si es true o false
+        //return hasHat ? damage * 2 : damage;              //es lo mismo que lo de arriba pero abreviado    operacion ternaria     ? = pregunta si es true o false
     }
 
-    public override void Skill(Rigidbody2D rb)
+    public override float Heal ()
     {
-        rb.gravityScale = 0f;
-        rb.velocity = Vector3.zero;
+        Debug.Log("El mago se cura");
+        float valor = Random.Range(damage, damage * damageMultiplier);
+        health += valor;
+        base.Heal();
+        return valor; // que devuelve, el valor de vida o lo que restaura
+
     }
-    public override void Update(Rigidbody2D rb)
-    {
-       if(rb.gravityScale == 0)
-        {
-            currentTime += Time.deltaTime;
-        }
+
+    //public override void Skill(Rigidbody2D rb)
+    //{
+    //    rb.gravityScale = 0f;
+    //    rb.velocity = Vector3.zero;
+    //}
+    //public override void Update(Rigidbody2D rb)
+    //{
+    //   if(rb.gravityScale == 0)
+    //    {
+    //        currentTime += Time.deltaTime;
+    //    }
 
         
-        if (currentTime <= maxTime)
+    //    if (currentTime <= maxTime)
 
-        {
-            rb.gravityScale = 1;
-        }
-    }
+    //    {
+    //        rb.gravityScale = 1;
+    //    }
+    //}
 
 }

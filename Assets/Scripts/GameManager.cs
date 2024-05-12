@@ -7,13 +7,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public enum GameManagerVariables { COINS, TIME, LIFES, POINTS };  //enum declarar estructura sirve para facilitar la lectura a otros programadores
+    public enum GameManagerVariables { DAMAGE, TIME, HEAL};  //enum declarar estructura sirve para facilitar la lectura a otros programadores
 
     private float time;
-    private int coins;
-    private int lifes = 3;
-    private int enemy;
-    private int initialCoins, initialLifes, initialEnemy;
+    private float damage;
+    private float health = 100;
+    private float  initialHealth;
 
     private void Awake()
     {
@@ -31,18 +30,13 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {
-        initialCoins = coins;
-        initialLifes = lifes;
-        initialEnemy = enemy;
-
+    {        
+        initialHealth = health;
     }
 
     public void Reset()
-    {
-        coins = initialCoins;
-        lifes = initialLifes;
-        enemy = initialEnemy;
+    {        
+        health = initialHealth;        
     }
 
 
@@ -54,44 +48,37 @@ public class GameManager : MonoBehaviour
     {
         return time;
     }
-    public int GetCoins()
+    
+    public float GetHeal()
     {
-        return coins;
+        return health;
     }
-    public int GetLifes()
+
+    public float GetDamage()
     {
-        return lifes;
+        return damage;
     }
-    public int GetPoints()
-    {
-        return enemy;
-    }
+
 
     //setter establecer, cambiar
     //public void SetTime(float value)   para cambiar tiempo
     //{
     //}
 
-    public void AddCoins(int monedasASumar)
+
+    public void AddHealth(float heal)
     {
-        coins += monedasASumar;
+        health += heal;
     }
-    public void AddLifes(int vidasASumar)
+    public void RHealth(float saludARestar)
     {
-        lifes += vidasASumar;
-    }
-    public void RLifes(int vidasARestar)
-    {
-        lifes -= vidasARestar;
-        if (lifes <= 0)
+        health -= saludARestar;
+        if (health <= 0)
         {
            // FindAnyObjectByType<Mario>().ResetGame();
         }
     }
-    public void AddPoints(int puntosASumar)
-    {
-        enemy += puntosASumar;
-    }
+    
 
 
 
