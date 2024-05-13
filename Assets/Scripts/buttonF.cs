@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class buttonF : MonoBehaviour
+public class ButtomF : MonoBehaviour
 {
+    public void ExitGame()
+    {
+        GameManager.instance.ExitGame();
+    }
+
     public void LoadScene(string sceneName)
     {
-        GameManager.instance.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 }

@@ -1,20 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Jugador : MonoBehaviour
 {
     public float speed = 2;
     public KeyCode leftKey, rightKey, upKey, downKey, botonIz, botonDer;
+    public Character character;
     //public GameObject R;
     private SpriteRenderer _rend;
     private Rigidbody2D _rb;
     private Vector2 _dir;
+
     void Start()
     {
         _rend = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
-        _rend.sprite = GameManager.instance.character.GetSprite();
+        GameManager.instance.SelectCharacter();
+
+        //int rnd = Random.Range(0, 2););
+        //if (rnd == 0)
+        //    character = new Cowboy("Cowboy");
+        //else
+        //    character = new Wizard("Wizard",2);
     }
 
     // Update is called once per frame

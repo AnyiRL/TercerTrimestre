@@ -6,7 +6,7 @@ public class Cowboy : Character
 {
     
 
-    public Cowboy(string name) : base(name, Resources.Load<Sprite>("Sprite"), 15)           //llamar a los componentes de character
+    public Cowboy(string name) : base(name, Resources.Load<Sprite>("Sprite/cowboy"), 15)           //llamar a los componentes de character
     {
         //construimos hijo
 

@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3aecb1f67092d4ea78af6b0c88fb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 2
-  cols: 2
+  rows: 3
+  cols: 3
   arbusto: {fileID: 4970652603800240542, guid: e620e7941cb123d46b54a41935cba94e, type: 3}
 --- !u!1 &382942255
 GameObject:

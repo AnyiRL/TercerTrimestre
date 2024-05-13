@@ -5,13 +5,18 @@ using UnityEngine;
 public class Arbusto : MonoBehaviour
 {
     public GameObject enemy;
-    void Start()
+    private float  index = 0;
+   
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)           // Collider quién se ha chocado
-    {
-        Instantiate(enemy, transform.position, Quaternion.identity);
+        float valor = Random.Range(-1, 2);
+        if (valor > 0 && index==0)
+        {
+            Instantiate(enemy, transform.position, Quaternion.identity);
+            index++;
+        }else
+        {
+            Debug.Log("No hay enemigo");
+        }
     }
 }

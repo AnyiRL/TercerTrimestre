@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     private float health = 100;
     private float  initialHealth;
     public Character character;
+    
 
     private void Awake()
     {
@@ -29,12 +32,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);    //se destruye el  gameObject para que no  haya dos o mas gm en el juego
         }
 
-        character = new Wizard("anyi", 1);
+        //character = new Wizard("anyi", 1);
     }
 
     void Start()
     {        
         initialHealth = health;
+        
     }
 
     public void Reset()
@@ -60,6 +64,20 @@ public class GameManager : MonoBehaviour
     public float GetDamage()
     {
         return damage;
+    }
+
+    
+    public void SelectCharacter()
+    {
+        TMP_Dropdown dropdown = FindObjectOfType<TMP_Dropdown>();
+        if (dropdown.value == 0)
+        {
+            character = new Cowboy("Cowboy");
+        }
+        else if (dropdown.value == 1)
+        {
+            character = new Wizard("Wizard", 2);
+        }
     }
 
 
