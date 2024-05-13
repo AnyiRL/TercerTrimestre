@@ -14,6 +14,7 @@ public class Jugador : MonoBehaviour
     {
         _rend = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
+        _rend.sprite = GameManager.instance.character.GetSprite();
     }
 
     // Update is called once per frame

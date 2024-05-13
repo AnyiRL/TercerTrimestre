@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private float damage;
     private float health = 100;
     private float  initialHealth;
+    public Character character;
 
     private void Awake()
     {
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);    //se destruye el  gameObject para que no  haya dos o mas gm en el juego
         }
+
+        character = new Wizard("anyi", 1);
     }
 
     void Start()

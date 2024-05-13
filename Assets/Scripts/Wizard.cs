@@ -10,7 +10,7 @@ public class Wizard :Character
     private float damageMultiplier ;
     //public float maxTime = 4;
 
-    public Wizard(string name,float damageMultiplier) : base ( name, Resources.Load<Sprite>("Sprite"),20)  //construimos padre
+    public Wizard(string name,float damageMultiplier) : base ( name, Resources.Load<Sprite>("Sprites/wizard"),20)  //construimos padre
     {
         this.damageMultiplier = damageMultiplier;
  
