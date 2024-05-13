@@ -7,8 +7,8 @@ public class DropDown : MonoBehaviour
 {
     public TextMeshProUGUI output;
 
-    public void LoadScene(string sceneName)
+    public void ChooseCharacter(string sceneName)
     {
-        GameManager.instance.LoadScene(sceneName);
+        GameManager.instance.SelectCharacter();
     }
 }

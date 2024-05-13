@@ -9,11 +9,12 @@ using UnityEngine.TextCore.Text;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public enum GameManagerVariables { DAMAGE, TIME, HEAL};  //enum declarar estructura sirve para facilitar la lectura a otros programadores
+    public enum GameManagerVariables { DAMAGE, HEAL, HEALTH,};  //enum declarar estructura sirve para facilitar la lectura a otros programadores
 
-    private float time;
+    
     private float damage;
     private float health = 100;
+    private float heal;
     private float  initialHealth;
     public Character character;
     
@@ -47,24 +48,20 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        time += Time.deltaTime;
-    }
-    public float GetTime()
-    {
-        return time;
-    }
-    
-    public float GetHeal()
-    {
-        return health;
-    }
+    //public float GetHealth()
+    //{
+    //    return health;
+    //}
 
-    public float GetDamage()
-    {
-        return damage;
-    }
+    //public float GetHeal()
+    //{
+    //    return heal;
+    //}
+
+    //public float GetDamage()
+    //{
+    //    return damage;
+    //}
 
     
     public void SelectCharacter()
@@ -81,39 +78,24 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //setter establecer, cambiar
-    //public void SetTime(float value)   para cambiar tiempo
+    
+
+
+    //public void AddHealth(float heal)
     //{
+    //    health += heal;
     //}
-
-
-    public void AddHealth(float heal)
-    {
-        health += heal;
-    }
-    public void RHealth(float saludARestar)
-    {
-        health -= saludARestar;
-        if (health <= 0)
-        {
-           // FindAnyObjectByType<Mario>().ResetGame();
-        }
-    }
+    //public void RHealth(float saludARestar)
+    //{
+    //    health -= saludARestar;
+    //    if (health <= 0)
+    //    {
+    //       // FindAnyObjectByType<Mario>().ResetGame();
+    //    }
+    //}
     
 
 
 
-    //callback funcion que se va a llamar en el on click de los botoones
-    public void LoadScene(string sceneName)
-    {
-        Debug.Log("Start");
-        SceneManager.LoadScene(sceneName);
-        //AudioManager.instance.ClearAudios();                //audiomanager, limpia todos los sonidos que estan sonando
-    }
-
-    public void ExitGame()
-    {
-        Debug.Log("Exit!!");
-        Application.Quit();
-    }
+    
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -17,22 +18,25 @@ public class UpdateText : MonoBehaviour
     void Update()
     {
 
-        switch (variable)
-        {
-            case GameManager.GameManagerVariables.TIME:
-                textComponent.text = "Time: " + GameManager.instance.GetTime().ToString("F2");
-                break;
-            case GameManager.GameManagerVariables.DAMAGE:
-
-                textComponent.text = "Daño de " +  GameManager.instance.GetDamage();
-                break;
-            case GameManager.GameManagerVariables.HEAL:
-                textComponent.text = " " + GameManager.instance.GetHeal();
-                break;
-           
-
-        }
     }
+
+    public void VidaP(float vida)
+    {
+        textComponent.text = "Vida personaje" + GameManager.instance.character.Heal();
+    }
+    public void VidaE(float vidaE)
+    {
+        textComponent.text = "Vida enemigo " + GameManager.instance.character.Heal();
+    }
+    public void DanioP(float danioP)
+    {
+        textComponent.text = "Daño personaje" + GameManager.instance.character.Attack();
+    }
+    public void DanioE(float danioE)
+    {
+        textComponent.text = "Daño " + GameManager.instance.character.Attack();
+    }
+
 }
 
 

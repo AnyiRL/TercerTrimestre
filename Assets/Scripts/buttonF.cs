@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtomF : MonoBehaviour
 {
-    public void ExitGame()
-    {
-        GameManager.instance.ExitGame();
-    }
+    
 
     public void LoadScene(string sceneName)
     {

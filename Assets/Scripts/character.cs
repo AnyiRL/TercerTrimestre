@@ -31,6 +31,7 @@ public abstract class Character       //no deja contruir un personaje al ser abs
 
     public float GetDamage()         //getter
     {
+        //GameManager.instance.GetDamage();
         return damage;
     }
 

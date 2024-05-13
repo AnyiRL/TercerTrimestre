@@ -18,13 +18,7 @@ public class Jugador : MonoBehaviour
     {
         _rend = GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
-        GameManager.instance.SelectCharacter();
-
-        //int rnd = Random.Range(0, 2););
-        //if (rnd == 0)
-        //    character = new Cowboy("Cowboy");
-        //else
-        //    character = new Wizard("Wizard",2);
+        
     }
 
     // Update is called once per frame
@@ -58,13 +52,6 @@ public class Jugador : MonoBehaviour
         {
             _dir = new Vector2(_dir.x, -1);
         }
-        else if (Input.GetKey(botonIz))
-        {
-            //GameManager.instance.GetHeal();
-        }
-        else if (Input.GetKey(botonDer))
-        {
-            //GameManager.instance.GetDamage();
-        }
+        
     }
 }
