@@ -10,7 +10,7 @@ public class Wizard :Character
     private float damageMultiplier ;
     //public float maxTime = 4;
 
-    public Wizard(string name,float damageMultiplier) : base ( name, Resources.Load<Sprite>("Sprites/wizard"),20)  //construimos padre
+    public Wizard(float damageMultiplier, string name) : base ( name, Resources.Load<Sprite>("Sprites/wizard"),20)  //construimos padre
     {
         this.damageMultiplier = damageMultiplier;
  
@@ -18,12 +18,12 @@ public class Wizard :Character
         //color = Color.yellow;
     }
 
-
+    //throw new System.NotImplementedException()   
    
 
     public override float Attack()
     {
-        Debug.Log("Cowboy ataca");
+        Debug.Log("Mago ataca");
         return damage * damageMultiplier;
         
         //if (hasHat)
@@ -37,12 +37,12 @@ public class Wizard :Character
         //return hasHat ? damage * 2 : damage;              //es lo mismo que lo de arriba pero abreviado    operacion ternaria     ? = pregunta si es true o false
     }
 
-    public override float Heal ()
+    public override float Heal ()          //sobreescribe el metodo padre
     {
         Debug.Log("El mago se cura");
         float valor = Random.Range(damage, damage * damageMultiplier);
         health += valor;
-        base.Heal();
+        base.Heal(); //invoca al metodo padre
         return valor; // que devuelve, el valor de vida o lo que restaura
 
     }

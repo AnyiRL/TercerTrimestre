@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
         else if (dropdown.value == 1)
         {
-            character = new Wizard("Wizard", 2);
+            character = new Wizard(2,"Wizard");
         }
     }
 

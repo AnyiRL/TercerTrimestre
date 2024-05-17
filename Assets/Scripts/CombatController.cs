@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CombatController : MonoBehaviour
 {
+    public Character character;
+    public Character enemy;
+     
     private float healthE;
     private float healthP;
     private float danio;
@@ -23,6 +26,7 @@ public class CombatController : MonoBehaviour
     {
         
     }
+
 
     //public float AttackP()
     //{
